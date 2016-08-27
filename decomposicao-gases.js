@@ -1,27 +1,27 @@
 const molecula1 = {
-  name: 'H2O',
-  nox: [1, -2],
-  atoms: ['H', 'O']
+  name: 'FeCl3',
+  nox: [3, -1],
+  atoms: ['Fe', 'Cl']
 }
 
-module.exports = (molecula1) => {
+const deco = (molecula1) => {
 	console.log('molecula1', molecula1)
-	const indiceunico = 2
-	const h_indice = ''
-	const o_indice = 1
-	var h = ''
+	const indiceunico = 3
+	const moleculaOut1_indice = ''
+	const moleculaOut2_indice = ''
+	var moleculaOut2 = ''
 	var coef = ''
 	if (coef < indiceunico){ 
-		if(o_indice < indiceunico)
-			coef = o_indice*indiceunico
+		if(moleculaOut2_indice < indiceunico)
+			coef = moleculaOut2-indice*indiceunico
 	}
 	var etapa1Coefic = ''
-	if (molecula1.nox[0] === 0) {
+	if (molecula1.nox[3] === 0) {
 		etapa1Coefic = ''
 		coef = ''
 	}
 	else
-		etapa1Coefic = 2
+		etapa1Coefic = 3
 
 	var etapa1 = etapa1Coefic+molecula1.atoms[0]+etapa1Coefic
 	var etapa2 = molecula1.atoms[1]+indiceunico
@@ -33,4 +33,4 @@ module.exports = (molecula1) => {
 	return coef+molecula1.name + ' -> ' +etapa1+ ' + ' + etapa2
 }
 
-
+console.log ('deco', deco(molecula1))
