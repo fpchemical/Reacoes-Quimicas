@@ -2,27 +2,27 @@
 // const inSimples = [1]
 // const outComposto = [1,3]
 // const outSimples = [2]
-const inSimples = [1]
-const inComposta = [1, 3]
-const outComposto = [1, 2]
-const outSimples = [1]
+const inSimples = [1] // A
+const inComposta = [1, 3] // B
+const outComposto = [1, 2] // C - A
+const outSimples = [1] // D - B
 
-const etapa1 = (inComposta,outSimples) => {
-	inComposta.forEach((el, i)=>{
-		inComposta[i] = el*outSimples[0]
-	// console.log ('inComposta', inComposta)
+const etapa1 = (inM,out) => {
+	out.forEach((el, i)=>{
+		out[i] = inM[1]*out[i]
+	console.log ('out', out)
 	})	
 }
-etapa1(inComposta, outSimples)
+etapa1(inComposta, outComposto)
 
-const etapa2 = (inComposta,outComposto) => {
-	if (inComposta[1]===outComposto[1]) {
+const etapa2 = (inM,out) => {
+	if (inM[1]===out[1]) {
 		//os dois estão igualados
 	}
 	else {
-		inComposta.forEach((el, i)=>{
-			inComposta[i] = el*outComposto[1]
-		console.log ('inComposta', inComposta)
+		inM.forEach((el, i)=>{
+			inM[i] *= (out[1]/inM[1])
+		console.log ('inM', inM)
 		})	
 	}
 
@@ -66,10 +66,10 @@ const etapa5 = (inSimples,outComposto) => {
 		//os dois estão igualados
 	}
 	else {
-		inSimples[0] = (outComposto[0]/inSimples[0])*inSimples[0]
+		inSimples[0] = outComposto[0]*inSimples[0]
 		// 2 é o MDC de 6 e 3
 		// o 2 é o MDC dos Cl
-	// console.log ('inSimples', inSimples)
+	console.log ('inSimples', inSimples)
 	}
 
 }
