@@ -2,10 +2,10 @@
 // const inSimples = [1]
 // const outComposto = [1,3]
 // const outSimples = [2]
-const inSimples = [2]
-const inComposta = [4, 10]
-const outSimples = [2, 1]
+const inSimples = [1]
+const inComposta = [1, 3]
 const outComposto = [1, 2]
+const outSimples = [1]
 
 const etapa1 = (inComposta,outSimples) => {
 	inComposta.forEach((el, i)=>{
@@ -22,7 +22,7 @@ const etapa2 = (inComposta,outComposto) => {
 	else {
 		inComposta.forEach((el, i)=>{
 			inComposta[i] = el*outComposto[1]
-		// console.log ('inComposta', inComposta)
+		console.log ('inComposta', inComposta)
 		})	
 	}
 
