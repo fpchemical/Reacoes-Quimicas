@@ -10,7 +10,7 @@ const compB = [
 	{name: 'Cl', coeficiente: 1, indice: 1, calculado: false}] // B
 const compC = [
 	{name: 'Na', coeficiente: 1, indice: 1, calculado: false}, 
-	{name: 'Cl', coeficiente: 1, indice: 1, calculado: false}] // C - A
+	{name: 'Cl', coeficiente: 1, indice: 5, calculado: false}] // C - A
 const compD = [
 	{name: 'H', coeficiente: 1, indice: 2, calculado: false}, 
 	{name: 'S', coeficiente: 1, indice: 1, calculado: false}] // D - B
@@ -24,84 +24,97 @@ const comps = [
 const achaMoleculaComAtomoIgual = (molecula, name) => {
 	delete comps[comps.indexOf(molecula)]
 	let result = 0
+	comps.forEach((el, i) => el.forEach((atom, i) => result  = el))
+	return result
+}
+
+const achaCoeficienteMaior = (comps) => {
+	let maior = 0
 	comps.forEach((el, i) => {
-		el.forEach((atom, i) => {
-			// console.log('atom.name', atom.name)
-			if(atom.name === name) {
-				// console.log('achei o fdp', el)
-				result  = el
-			}
+		maior = el.reduce((atomAnterior, atomAtual) => {
+			console.log('atomAnterior.indice', atomAnterior.indice)
+			console.log('atomAtual.indice', atomAtual.indice)
+			return (atomAnterior.indice < atomAtual.indice) 
+			? atomAtual.indice
+			: atomAnterior.indice
 		})
 	})
-	return result
+	console.log('maior', maior)
 } 
-	//chama função que acha primeiro coef>1
-		let coefIn = compA[0].indice
-		// console.log ('coefIn', coefIn)
-		//chama função que busca o mesmo 
-		//elemento em outra molécula
-		let mesmaMolecula = achaMoleculaComAtomoIgual(compA, compA[0].name)
-		// console.log('mesmaMolecula', mesmaMolecula)
-		let index = 0
-		mesmaMolecula.forEach((el, i) => {
-			if(el.name === compA[0].name) index = i
-		})
-		// let index = mesmaMolecula[mesmaMolecula.indexOf(compA[0].name)]
-		// console.log('index', index)
-	// }
+achaCoeficienteMaior(comps)
+//chama função que acha primeiro coef>1
+let coefIn = compA[0].indice
+// console.log ('coefIn', coefIn)
+//chama função que busca o mesmo 
+//elemento em outra molécula
+let mesmaMolecula = achaMoleculaComAtomoIgual(compA, compA[0].name)
+// console.log('mesmaMolecula', mesmaMolecula)
+
+let index = 0
+
+const getIndex = (molecula) =>  {
+	let index = 0
+	molecula.forEach((el, i) => {
+		if (el.name === compA[0].name) index = i
+	})
+	return index
+}
+index = getIndex(mesmaMolecula)
+// let index = mesmaMolecula[mesmaMolecula.indexOf(compA[0].name)]
+console.log('index', index)
+// }
 // })
-		if (coefIn!==mesmaMolecula[index].indice) {
-			console.log ('mesmaMolecula[index].indice', mesmaMolecula[index].indice)
-			// busca próximo coef>1 
-			const multiCoefC = (el, i) => {
-				compC[i].coeficiente = compC[i].indice*coefIn
-			}
-			compC.forEach(multiCoefC)
-			// console.log ('compC', compC)
+if (coefIn!==mesmaMolecula[index].indice) {
+	console.log ('mesmaMolecula[index].indice', mesmaMolecula[index].indice)
+	// busca próximo coef>1 
+	const multiCoefC = (el, i) => {
+		compC[i].coeficiente = compC[i].indice*coefIn
+	}
+	compC.forEach(multiCoefC)
+	// console.log ('compC', compC)
+}
+//pega elemento que foi modificado
+//e não está balanceado
+coefIn = compD[0].indice
+//chama função que busca o mesmo 
+//elemento em outra molécula
+
+// mesmaMolecula = compB
+// mesmaMolecula = achaMoleculaComAtomoIgual(compB, compB[0].name)
+
+mesmaMolecula = achaMoleculaComAtomoIgual(compA, compA[0].name)
+// console.log('mesmaMolecula', mesmaMolecula)
+// index = 
+index = getIndex(mesmaMolecula)
+// let index = mesmaMolecula[mesmaMolecula.indexOf(compA[0].name)]
+console.log('index', index)
+console.log('mesmaMolecula', mesmaMolecula)
+	if (coefIn!==compB[0].indice) {
+
+		const multiCoefB = (el, i) => {
+			compB[i].coeficiente = compB[i].indice*coefIn
 		}
-		//pega elemento que foi modificado
-		//e não está balanceado
-		coefIn = compD[0].indice
-		//chama função que busca o mesmo 
-		//elemento em outra molécula
+		compB.forEach(multiCoefB)
+		// console.log ('compB', compB) 	
+	}
+	// pega o elemento que ainda não foi balanceado
+	coefIn = compD[0].indice
+//chama função que busca o mesmo 
+//elemento em outra molécula
+	// mesmaMolecula = compD
+mesmaMolecula = achaMoleculaComAtomoIgual(compD, compD[0].name)
+console.log('mesmaMolecula', compD[0].name, mesmaMolecula)
+	if (coefIn!==compD[0].indice) {
 
-		// mesmaMolecula = compB
-		// mesmaMolecula = achaMoleculaComAtomoIgual(compB, compB[0].name)
-
-		let mesmaMolecula = achaMoleculaComAtomoIgual(compA, compA[0].name)
-		// console.log('mesmaMolecula', mesmaMolecula)
-		let index = 0
-		mesmaMolecula.forEach((el, i) => {
-			if(el.name === compA[0].name) index = i
-		})
-
-		console.log('mesmaMolecula', mesmaMolecula)
-			if (coefIn!==compB[0].indice) {
-
-				const multiCoefB = (el, i) => {
-					compB[i].coeficiente = compB[i].indice*coefIn
-				}
-				compB.forEach(multiCoefB)
-				// console.log ('compB', compB) 	
-			}
-			// pega o elemento que ainda não foi balanceado
-			coefIn = compD[0].indice
-		//chama função que busca o mesmo 
-		//elemento em outra molécula
-			// mesmaMolecula = compD
-		mesmaMolecula = achaMoleculaComAtomoIgual(compD, compD[0].name)
-		console.log('mesmaMolecula', compD[0].name, mesmaMolecula)
-			if (coefIn!==compD[0].indice) {
-
-				const multiCoefB = (el, i) => {
-					compB[i].coeficiente = compB[i].indice*coefIn
-				}
-				compB.forEach(multiCoefB)
-				// console.log ('compB', compB) 	
-			}
-			else {
-				// encontrou coef de mesmo valor
-			}
+		const multiCoefB = (el, i) => {
+			compB[i].coeficiente = compB[i].indice*coefIn
+		}
+		compB.forEach(multiCoefB)
+		// console.log ('compB', compB) 	
+	}
+	else {
+		// encontrou coef de mesmo valor
+	}
 
 
 const mostraCoeficientes = (el, i) => {
